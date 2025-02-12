@@ -87,10 +87,3 @@ Avant d'exécuter ce script, tu dois avoir les éléments suivants :
   
 - **Titres non trouvés** : Si certains titres ne sont pas trouvés sur Spotify, ils seront affichés dans la sortie, ce qui te permettra de vérifier manuellement.
 
-## Licence
-
-Ce projet est sous licence MIT. N'hésite pas à l'utiliser et à l'adapter à tes besoins !
-
----
-
-Ce format de `README.md` fournit toutes les informations nécessaires pour configurer et exécuter le script dans un environnement local.
