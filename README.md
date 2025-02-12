@@ -1,7 +1,3 @@
-Voici un exemple de fichier `README.md` que tu pourrais utiliser pour ton projet. Il décrit comment faire fonctionner le code étape par étape.
-
----
-
 # Deezer to Spotify Playlist Transfer
 
 Ce projet permet de transférer une playlist depuis Deezer vers Spotify. Il récupère les titres d'une playlist Deezer et les ajoute à une nouvelle playlist Spotify via l'API de chaque service.
