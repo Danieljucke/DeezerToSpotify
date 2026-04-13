@@ -1,85 +1,84 @@
 # Deezer to Spotify Playlist Transfer
 
-Ce projet permet de transférer une playlist depuis Deezer vers Spotify. Il récupère les titres d'une playlist Deezer et les ajoute à une nouvelle playlist Spotify via l'API de chaque service.
+This project allows you to transfer a playlist from Deezer to Spotify. It retrieves tracks from a Deezer playlist and adds them to a new Spotify playlist using each service's API.
 
-## Prérequis
+## Prerequisites
 
-Avant d'exécuter ce script, tu dois avoir les éléments suivants :
+Before running this script, you need the following:
 
-- **Un compte Spotify Developer** : [Crée un compte Spotify Developer](https://developer.spotify.com/dashboard/applications) et génère un `client_id` et un `client_secret` pour l'authentification avec l'API Spotify.
-- **Un compte Deezer** avec un lien vers une playlist publique.
+- **A Spotify Developer account**: [Create a Spotify Developer account](https://developer.spotify.com/dashboard/applications) and generate a `client_id` and `client_secret` for Spotify API authentication.
+- **A Deezer account** with a link to a public playlist.
 
 ## Installation
 
-1. Clone ce repository ou télécharge les fichiers sur ton ordinateur.
+1. Clone this repository or download the files to your computer.
    
-2. Assure-toi d'avoir Python installé sur ton système (version 3.6 ou supérieure).
+2. Make sure you have Python installed on your system (version 3.6 or higher).
 
-3. Installe les dépendances nécessaires :
+3. Install the required dependencies:
    ```bash
    pip install spotipy requests
    ```
 
 ## Configuration
 
-1. **Spotify API :**  
-   - Va sur le [Dashboard de Spotify Developer](https://developer.spotify.com/dashboard/applications).
-   - Crée une nouvelle application pour obtenir ton `client_id` et `client_secret`.
-   - Remplis les informations dans le script Python à la section suivante :
+1. **Spotify API:**  
+   - Go to the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/applications).
+   - Create a new application to get your `client_id` and `client_secret`.
+   - Fill in the information in the Python script in the following section:
 
    ```python
    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
-       client_id="VOTRE_CLIENT_ID",  # Remplace par ton client_id
-       client_secret="VOTRE_CLIENT_SECRET",  # Remplace par ton client_secret
+       client_id="YOUR_CLIENT_ID",  # Replace with your client_id
+       client_secret="YOUR_CLIENT_SECRET",  # Replace with your client_secret
        redirect_uri="http://localhost:8888/callback",
        scope="playlist-modify-public",
        cache_path=cache_file
    ))
    ```
 
-2. **Deezer Playlist :**
-   - Récupère le lien de la playlist Deezer que tu souhaites transférer. Par exemple, un lien de playlist ressemblant à ceci : `https://www.deezer.com/fr/playlist/123456789`.
-   - Mets ce lien dans le script à la ligne suivante :
+2. **Deezer Playlist:**
+   - Get the link of the Deezer playlist you want to transfer. For example, a playlist link looks like this: `https://www.deezer.com/en/playlist/123456789`.
+   - Put this link in the script at the following line:
    
    ```python
-   DEEPLINK = "TON_LIEN_DEEPLER"
+   DEEPLINK = "YOUR_DEEZER_LINK"
    ```
 
-## Utilisation
+## Usage
 
-1. **Exécution du script :**
+1. **Running the script:**
    
-   Une fois que tu as configuré le `client_id`, `client_secret` et le lien de ta playlist Deezer, tu peux lancer le script avec la commande suivante :
+   Once you have configured the `client_id`, `client_secret`, and your Deezer playlist link, you can run the script with the following command:
 
    ```bash
    python deezer_to_spotify.py
    ```
 
-2. **Processus d'exécution :**
+2. **Execution process:**
    
-   Le script suit les étapes suivantes :
-   - **Extraction de l'ID de la playlist Deezer** : Il suit les redirections du lien Deezer et extrait l'ID de la playlist.
-   - **Récupération des titres de la playlist Deezer** : Il récupère les informations des titres de la playlist (nom de l'artiste et titre de la chanson) depuis l'API Deezer.
-   - **Configuration de Spotify** : Le script configure l'authentification avec l'API Spotify à l'aide des informations d'authentification que tu as fournies.
-   - **Création d'une playlist sur Spotify** : Il crée une nouvelle playlist sur ton compte Spotify avec le nom "Playlist Deezer" (ou un autre nom que tu peux définir).
-   - **Recherche et ajout des titres à la playlist Spotify** : Le script recherche chaque titre sur Spotify et l'ajoute à la playlist. Si un titre n'est pas trouvé, il est noté dans la sortie.
+   The script follows these steps:
+   - **Extract Deezer playlist ID**: It follows the Deezer link redirects and extracts the playlist ID.
+   - **Retrieve Deezer playlist tracks**: It fetches track information (artist name and song title) from the Deezer API.
+   - **Configure Spotify**: The script sets up authentication with the Spotify API using the credentials you provided.
+   - **Create a Spotify playlist**: It creates a new playlist on your Spotify account named "Deezer Playlist" (or another name you can customize).
+   - **Search and add tracks to Spotify playlist**: The script searches for each track on Spotify and adds it to the playlist. If a track isn't found, it's noted in the output.
 
-3. **Exemple de sortie :**
+3. **Example output:**
    
-   Lorsque tout se passe bien, tu devrais voir quelque chose comme ceci dans le terminal :
+   When everything works correctly, you should see something like this in the terminal:
    ```bash
-   🎵 ID récupéré : 123456789
-   Récupération des titres depuis Deezer...
-   Nombre de titres trouvés: 50
-   Configuration de Spotify...
-   Création de la playlist Spotify...
-   Ajout des titres à la playlist Spotify...
-   Transfert terminé avec succès!
+   🎵 Retrieved ID: 123456789
+   Retrieving tracks from Deezer...
+   Number of tracks found: 50
+   Configuring Spotify...
+   Creating Spotify playlist...
+   Adding tracks to Spotify playlist...
+   Transfer completed successfully!
    ```
 
-## Remarques
+## Notes
 
-- **Limite de requêtes Spotify** : Spotify impose une limite sur le nombre de requêtes par minute. Si tu as une playlist avec beaucoup de titres, tu pourrais être temporairement bloqué si tu dépasses cette limite. Le script tente de gérer cela, mais il peut être nécessaire de ralentir les appels API dans des cas extrêmes.
+- **Spotify rate limits**: Spotify imposes limits on the number of requests per minute. If you have a playlist with many tracks, you might be temporarily blocked if you exceed this limit. The script attempts to handle this, but you may need to slow down API calls in extreme cases.
   
-- **Titres non trouvés** : Si certains titres ne sont pas trouvés sur Spotify, ils seront affichés dans la sortie, ce qui te permettra de vérifier manuellement.
-
+- **Tracks not found**: If some tracks are not found on Spotify, they will be displayed in the output, allowing you to check them manually.

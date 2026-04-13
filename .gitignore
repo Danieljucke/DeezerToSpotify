@@ -1,0 +1,25 @@
+# Créez le .gitignore à la racine
+@"
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# Cache files 
+.cache
+
+# Environment files
+.env
+
+
+# Ajoutez le fichier
+git add .gitignore
+
+# Vérifiez le statut AVANT de tout ajouter
+git status
