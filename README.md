@@ -218,3 +218,9 @@ When submitting changes, please describe what was changed and how it was tested.
 This is an independent open-source project and is not affiliated with, endorsed by, or sponsored by Spotify or Deezer.
 
 Spotify and Deezer are trademarks of their respective owners.
+
+## License status
+
+No root license file is currently provided. Until the repository owner selects
+and adds a license, copyright law reserves reuse rights by default. The
+documentation does not make a license choice on the owner's behalf.
